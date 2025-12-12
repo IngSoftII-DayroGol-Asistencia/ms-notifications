@@ -1,0 +1,18 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "projects": {
+    "send-grid": {
+      "type": "library",
+      "root": "libs/send-grid",
+      "entryFile": "index",
+      "sourceRoot": "libs/send-grid/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/send-grid/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
