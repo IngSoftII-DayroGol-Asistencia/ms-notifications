@@ -4,8 +4,6 @@ import { EmailDto } from './email.dto';
 
 export class SendEmailsDto {
   @ApiProperty({ example: 'test' })
-  company: string;
-  @ApiProperty({ example: 'test' })
   @IsString()
   subject: string;
   @ApiProperty({ type: () => [EmailDto] })

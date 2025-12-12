@@ -6,16 +6,14 @@ import { TransformInterceptor } from './core/interceptors/transform.interceptor'
 import { EmailsModule } from './emails/emails.module';
 import { AuthModule } from './core/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaService } from './core/prisma/prisma.service';
-import { CompaniesModule } from './companies/companies.module';
 
 @Module({
-  imports: [EmailsModule, AuthModule, ConfigModule.forRoot({}), CompaniesModule],
+  imports: [EmailsModule, AuthModule, ConfigModule.forRoot({})],
   controllers: [AppController],
   providers: [
     AppService,
     { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
-    PrismaService,
   ],
 })
 export class AppModule {}
+

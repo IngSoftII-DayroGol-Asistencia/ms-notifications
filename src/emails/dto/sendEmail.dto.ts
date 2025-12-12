@@ -3,8 +3,6 @@ import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class SendEmailDto {
   @ApiProperty({ example: 'test' })
-  company: string;
-  @ApiProperty({ example: 'test' })
   @IsString()
   subject: string;
   @ApiProperty({ example: 'example@example.com' })

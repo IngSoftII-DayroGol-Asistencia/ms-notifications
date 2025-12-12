@@ -1,21 +1,40 @@
-FROM node:latest
+# Build stage
+FROM node:20-alpine AS builder
 
-# Create app directory, this is in our container/in our image
-WORKDIR /tms-conector-Email
+WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package.json ./
-COPY prisma ./prisma/
+# Copy package files
+COPY package*.json ./
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+# Install dependencies
+RUN npm ci
 
-# Bundle app source
+# Copy source code
 COPY . .
 
+# Build the application
 RUN npm run build
 
-CMD [ "node", "dist/main" ]
+# Production stage
+FROM node:20-alpine AS production
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy built application from builder stage
+COPY --from=builder /app/dist ./dist
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=8080
+
+# Expose port (Cloud Run uses 8080 by default)
+EXPOSE 8080
+
+# Run the application
+CMD ["node", "dist/main"]

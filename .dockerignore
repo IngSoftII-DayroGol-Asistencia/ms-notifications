@@ -1,2 +1,15 @@
 node_modules
-npm-debug.log
+dist
+.git
+.gitignore
+.env
+.env.*
+*.md
+.vscode
+.idea
+coverage
+test
+*.log
+npm-debug.log*
+.DS_Store
+prisma/*.db
