@@ -15,4 +15,10 @@ describe('PrismaService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should connect to database on module init', async () => {
+    const connectSpy = jest.spyOn(service, '$connect').mockResolvedValue();
+    await service.onModuleInit();
+    expect(connectSpy).toHaveBeenCalled();
+  });
 });

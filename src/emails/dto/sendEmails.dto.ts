@@ -9,7 +9,7 @@ export class SendEmailsDto {
   @IsString()
   subject: string;
   @ApiProperty({ type: () => [EmailDto] })
-  emails: [EmailDto];
+  emails: EmailDto[];
   @ApiProperty({ example: '<h1>Test<h1>', required: false })
   @IsString()
   @IsOptional()

@@ -12,6 +12,7 @@
   },
   "moduleNameMapper": {
     "apicreatelibs/send-grid/(.*)": "<rootDir>/../libs/send-grid/src/$1",
-    "apicreatelibs/send-grid": "<rootDir>/../libs/send-grid/src"
+    "apicreatelibs/send-grid": "<rootDir>/../libs/send-grid/src",
+    "^src/(.*)": "<rootDir>/../src/$1"
   }
 }
